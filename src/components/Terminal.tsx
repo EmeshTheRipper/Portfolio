@@ -144,7 +144,7 @@ export default function Terminal() {
       );
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (_) {
+    } catch {
       // clipboard unavailable
     }
   };

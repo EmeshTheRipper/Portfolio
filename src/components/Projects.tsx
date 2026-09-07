@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiGithub, FiExternalLink, FiFolder, FiStar } from "react-icons/fi";
+import { FiGithub, FiExternalLink, FiFolder } from "react-icons/fi";
 
 type Project = {
   title: string;
