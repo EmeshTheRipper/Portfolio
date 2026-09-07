@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { FiMenu, FiX, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 const navLinks = [
@@ -43,27 +44,17 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <a href="#" className="flex items-center gap-2.5 group">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="w-7 h-7 text-primary group-hover:text-secondary transition-colors"
-            >
-              <path
-                d="M12 2L3 7v6c0 5.25 3.75 10.17 9 11.38C17.25 23.17 21 18.25 21 13V7l-9-5z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinejoin="round"
+            <span className="w-8 h-8 rounded-full overflow-hidden ring-2 ring-primary/30 group-hover:ring-primary/60 transition-all">
+              <Image
+                src="/profile.jpeg"
+                alt="Emesh Lamichhane"
+                width={32}
+                height={32}
+                className="w-full h-full object-cover"
               />
-              <path
-                d="M9 12l2 2 4-4"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            </span>
             <span className="font-mono text-sm text-foreground/90 hidden sm:block">
-              emesh<span className="text-primary">.dev</span>
+              emesh<span className="text-primary">theripper</span>
             </span>
           </a>
 

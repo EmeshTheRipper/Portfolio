@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   FiArrowRight,
@@ -59,6 +60,28 @@ export default function Hero() {
       </div>
 
       <div className="text-center max-w-3xl mx-auto relative z-10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="mb-6"
+        >
+          <div className="relative inline-block">
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-primary to-secondary opacity-30 blur-md" />
+            <div className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full border-4 border-background overflow-hidden ring-2 ring-primary/40">
+              <Image
+                src="/profile.jpeg"
+                alt="Emesh Lamichhane"
+                width={144}
+                height={144}
+                priority
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <span className="absolute bottom-2 right-2 w-5 h-5 rounded-full bg-secondary border-4 border-background animate-pulse-dot" />
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

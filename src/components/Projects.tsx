@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiGithub, FiExternalLink, FiFolder, FiStar } from "react-icons/fi";
+import { FiGithub, FiExternalLink, FiFolder, FiStar, FiServer, FiTerminal, FiGlobe, FiLock, FiActivity } from "react-icons/fi";
 
 type Status = "Live" | "In Progress" | "Open Source" | "Research";
 
@@ -13,6 +13,8 @@ type Project = {
   demo?: string;
   status: Status;
   featured?: boolean;
+  icon: React.ComponentType<{ className?: string }>;
+  gradient: string;
 };
 
 const statusStyles: Record<Status, string> = {
@@ -31,6 +33,8 @@ const projects: Project[] = [
     github: "https://github.com/EmeshTheRipper/AI-WIFI-threat-detection-centre",
     status: "Open Source",
     featured: true,
+    icon: FiActivity,
+    gradient: "from-primary/20 via-primary/5 to-transparent",
   },
   {
     title: "Secure Auth API",
@@ -39,6 +43,8 @@ const projects: Project[] = [
     tags: ["Python", "REST API", "JWT", "OWASP"],
     github: "https://github.com/EmeshTheRipper",
     status: "Research",
+    icon: FiLock,
+    gradient: "from-purple/20 via-purple/5 to-transparent",
   },
   {
     title: "Vulnerability Scanner CLI",
@@ -47,6 +53,8 @@ const projects: Project[] = [
     tags: ["Python", "Nmap", "CLI", "Network Security"],
     github: "https://github.com/EmeshTheRipper",
     status: "In Progress",
+    icon: FiTerminal,
+    gradient: "from-amber/20 via-amber/5 to-transparent",
   },
   {
     title: "Portfolio Platform",
@@ -56,6 +64,8 @@ const projects: Project[] = [
     github: "https://github.com/EmeshTheRipper/Portfolio",
     demo: "https://www.emeshlamichhane.com.np",
     status: "Live",
+    icon: FiGlobe,
+    gradient: "from-secondary/20 via-secondary/5 to-transparent",
   },
   {
     title: "Cryptography Coursework",
@@ -64,6 +74,8 @@ const projects: Project[] = [
     tags: ["Python", "Cryptography", "Algorithms"],
     github: "https://github.com/EmeshTheRipper/Cryptography",
     status: "Open Source",
+    icon: FiLock,
+    gradient: "from-primary/20 via-primary/5 to-transparent",
   },
   {
     title: "Network Traffic Analyzer",
@@ -72,6 +84,8 @@ const projects: Project[] = [
     tags: ["Python", "Wireshark", "Network Analysis"],
     github: "https://github.com/EmeshTheRipper/Networking",
     status: "Open Source",
+    icon: FiServer,
+    gradient: "from-primary/20 via-primary/5 to-transparent",
   },
 ];
 
@@ -108,74 +122,90 @@ export default function Projects() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((project, idx) => (
+          {projects.map((project, idx) => {
+            const Icon = project.icon;
+            return (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="glass rounded-2xl p-6 flex flex-col card-lift group"
+              className="glass rounded-2xl overflow-hidden flex flex-col card-lift group"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-9 h-9 rounded-lg bg-surface border border-border flex items-center justify-center group-hover:border-primary/30 transition-colors">
-                  <FiFolder className="w-4 h-4 text-primary" />
+              <div
+                className={`relative h-28 bg-gradient-to-br ${project.gradient} flex items-center justify-center border-b border-border overflow-hidden`}
+              >
+                <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
+                  <Icon className="w-16 h-16 text-foreground" />
+                </div>
+                <div className="relative w-12 h-12 rounded-xl bg-background/40 backdrop-blur-sm border border-border flex items-center justify-center">
+                  <Icon className="w-5 h-5 text-primary" />
                 </div>
                 <span
-                  className={`px-2.5 py-0.5 rounded-full border text-[10px] font-mono ${statusStyles[project.status]}`}
+                  className={`absolute top-2 right-2 px-2 py-0.5 rounded-full border text-[9px] font-mono bg-background/60 backdrop-blur-sm ${statusStyles[project.status]}`}
                 >
                   {project.status}
                 </span>
               </div>
 
-              <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-muted text-sm leading-relaxed mb-4 flex-1 line-clamp-4">
-                {project.description}
-              </p>
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-9 h-9 rounded-lg bg-surface border border-border flex items-center justify-center group-hover:border-primary/30 transition-colors">
+                    <FiFolder className="w-4 h-4 text-primary" />
+                  </div>
+                  {project.featured && (
+                    <span className="inline-flex items-center gap-1 text-[10px] font-mono text-amber">
+                      <FiStar className="w-3 h-3" />
+                      Featured
+                    </span>
+                  )}
+                </div>
 
-              <div className="flex flex-wrap gap-1.5 mb-5">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-0.5 rounded text-[10px] font-mono text-muted bg-surface border border-border"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-muted text-sm leading-relaxed mb-4 flex-1 line-clamp-4">
+                  {project.description}
+                </p>
 
-              <div className="flex items-center gap-4 mt-auto pt-4 border-t border-border">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-muted hover:text-primary transition-colors"
-                >
-                  <FiGithub className="w-3 h-3" />
-                  Code
-                </a>
-                {project.demo && (
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-0.5 rounded text-[10px] font-mono text-muted bg-surface border border-border"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-4 pt-4 border-t border-border">
                   <a
-                    href={project.demo}
+                    href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-mono text-muted hover:text-primary transition-colors"
                   >
-                    <FiExternalLink className="w-3 h-3" />
-                    Live
+                    <FiGithub className="w-3 h-3" />
+                    Code
                   </a>
-                )}
-                {project.featured && (
-                  <span className="ml-auto inline-flex items-center gap-1 text-[10px] font-mono text-amber">
-                    <FiStar className="w-3 h-3" />
-                    Featured
-                  </span>
-                )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-muted hover:text-primary transition-colors"
+                    >
+                      <FiExternalLink className="w-3 h-3" />
+                      Live
+                    </a>
+                  )}
+                </div>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

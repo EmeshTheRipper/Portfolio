@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="text-center sm:text-left">
             <p className="font-mono text-sm mb-1">
               <span className="text-primary">emesh</span>
-              <span className="text-muted">.dev</span>
+              <span className="text-muted">theripper</span>
             </p>
             <p className="text-muted text-xs font-mono">
               emesh.lamichhane123@gmail.com
