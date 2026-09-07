@@ -1,31 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  FiBookOpen,
-  FiShield,
-  FiServer,
-  FiCpu,
-} from "react-icons/fi";
+import { FiShield, FiTerminal, FiZap, FiLock } from "react-icons/fi";
 
-const labs = [
-  { name: "Hack The Box", desc: "Active offsec labs, exploit research" },
-  { name: "TryHackMe", desc: "Structured rooms, defensive blue-teaming" },
-  { name: "PortSwigger Academy", desc: "Web security labs, OWASP Top 10" },
-  { name: "VulnHub", desc: "Boot-to-root vulnerable VMs" },
+const metrics = [
+  { icon: FiShield, label: "Focus", value: "Offensive & AppSec", color: "text-primary" },
+  { icon: FiTerminal, label: "Mindset", value: "Zero Trust Security", color: "text-secondary" },
+  { icon: FiZap, label: "Approach", value: "Secure-by-Design", color: "text-amber" },
+  { icon: FiLock, label: "Philosophy", value: "Defense in Depth", color: "text-purple" },
 ];
 
 const highlights = [
-  "Penetration testing across web & network attacks",
-  "Hands-on with Kali Linux penetration toolkit",
-  "Real-world vulnerability assessment & management",
-  "Full-stack development with security-first mindset",
+  "Penetration testing across web applications & networks",
+  "OWASP Top 10 vulnerability identification and remediation",
+  "Hands-on exploit development in Kali Linux environments",
+  "Full-stack development with security-first architecture",
+  "Digital forensics and incident response fundamentals",
+  "Network traffic analysis with Wireshark and packet inspection",
 ];
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-4">
-      <div className="max-w-4xl mx-auto">
+    <section id="about" className="py-28 px-4">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,86 +31,94 @@ export default function About() {
         >
           <h2 className="text-2xl font-bold mb-2 flex items-center gap-3">
             <span className="text-primary font-mono text-sm">01.</span>
-            <span className="font-mono text-primary/20 text-sm">/about</span>
+            <span className="text-muted/30 font-mono text-sm">/about</span>
             About Me
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 mt-8">
+        <div className="grid lg:grid-cols-5 gap-6 mt-10">
           <motion.div
-            className="glass glass-hover rounded-2xl p-8"
+            className="lg:col-span-3 glass rounded-2xl p-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center">
-                <FiBookOpen className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold">Education</h3>
-            </div>
-
-            <div className="mb-6">
-              <p className="font-semibold">
-                BSc (Hons) Ethical Hacking &amp; Cybersecurity
-              </p>
-              <p className="text-muted text-sm mt-1">
-                Coventry University · Softwarica College of IT &amp; E-Commerce
-              </p>
-              <span className="inline-block mt-3 px-3 py-1 rounded-full bg-success/10 border border-success/30 text-success text-xs font-mono">
-                Upper Second-Class Honours (2:1)
+            <p className="text-foreground/80 leading-relaxed mb-4">
+              I&apos;m a cybersecurity specialist and full-stack developer who believes
+              that{" "}
+              <span className="text-primary font-medium">
+                security should be built into every layer of an application
               </span>
-            </div>
+              , not bolted on as an afterthought. With a BSc (Hons) in Ethical
+              Hacking &amp; Cybersecurity from Coventry University, I combine
+              offensive security expertise with clean, maintainable code.
+            </p>
+            <p className="text-foreground/80 leading-relaxed mb-6">
+              My workflow spans the entire attack surface — from reconnaissance
+              and vulnerability scanning to exploitation and secure remediation.
+              On the development side, I build full-stack web applications with
+              hardened authentication, input validation, and robust API design.
+            </p>
 
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               {highlights.map((item) => (
-                <p key={item} className="flex items-start gap-2 text-sm text-muted">
-                  <span className="text-success mt-0.5">▸</span>
-                  {item}
-                </p>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="glass glass-hover rounded-2xl p-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-secondary/10 border border-secondary/30 flex items-center justify-center">
-                <FiShield className="w-5 h-5 text-secondary" />
-              </div>
-              <h3 className="text-lg font-semibold">Hands-on Lab Experience</h3>
-            </div>
-
-            <div className="space-y-4">
-              {labs.map((lab) => (
-                <div
-                  key={lab.name}
-                  className="flex items-start gap-3 p-3 rounded-xl border border-border bg-white/[0.02] hover:bg-white/[0.05] transition-colors"
-                >
-                  <FiServer className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                  <div>
-                    <p className="text-sm font-medium">{lab.name}</p>
-                    <p className="text-xs text-muted mt-0.5">{lab.desc}</p>
-                  </div>
+                <div key={item} className="flex items-start gap-2.5 text-sm text-foreground/70">
+                  <span className="text-primary mt-0.5 font-mono text-xs">▹</span>
+                  <span>{item}</span>
                 </div>
               ))}
             </div>
-
-            <div className="flex items-center gap-3 mt-6 mb-3">
-              <FiCpu className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">Continuous Learning</span>
-            </div>
-            <p className="text-sm text-muted leading-relaxed">
-              Actively sharpening offensive and defensive security skills through
-              daily hands-on practice in realistic vulnerable environments.
-            </p>
           </motion.div>
+
+          <div className="lg:col-span-2 flex flex-col gap-4">
+            <motion.div
+              className="glass rounded-2xl p-6 flex-1"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <p className="text-sm font-mono text-muted mb-4">{"// education"}</p>
+              <h3 className="font-semibold text-base mb-1">
+                BSc (Hons) Ethical Hacking &amp; Cybersecurity
+              </h3>
+              <p className="text-muted text-sm">
+                Coventry University
+              </p>
+              <p className="text-muted text-xs mt-0.5">
+                Softwarica College of IT &amp; E-Commerce
+              </p>
+              <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                <span className="text-secondary text-xs font-mono">
+                  Upper Second-Class Honours (2:1)
+                </span>
+              </div>
+            </motion.div>
+
+            <div className="grid grid-cols-2 gap-4">
+              {metrics.map((m, idx) => {
+                const Icon = m.icon;
+                return (
+                  <motion.div
+                    key={m.label}
+                    className="glass rounded-xl p-4 text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.15 + idx * 0.05 }}
+                  >
+                    <Icon className={`w-4 h-4 ${m.color} mx-auto mb-2`} />
+                    <p className="text-[11px] text-muted font-mono uppercase tracking-wider mb-0.5">
+                      {m.label}
+                    </p>
+                    <p className="text-xs font-medium text-foreground/80">{m.value}</p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>

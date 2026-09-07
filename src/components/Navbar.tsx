@@ -1,14 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
-import { FiMenu, FiX, FiSun, FiMoon, FiGithub, FiLinkedin } from "react-icons/fi";
+import { FiMenu, FiX, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Terminal", href: "#terminal" },
+  { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -16,18 +15,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 0);
-    return () => clearTimeout(t);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-
       const sections = navLinks.map((l) => l.href.slice(1));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -38,27 +29,41 @@ export default function Navbar() {
       }
       setActiveSection("");
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "glass border-b border-border shadow-lg shadow-black/20"
-          : "bg-transparent"
+        scrolled ? "glass-strong shadow-lg shadow-black/20" : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center text-primary font-mono text-sm font-bold group-hover:bg-primary/20 transition-colors">
-              EL
-            </div>
-            <span className="font-mono text-sm text-foreground/80 hidden sm:block">
-              <span className="text-primary">~</span>/emesh
+          <a href="#" className="flex items-center gap-2.5 group">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="w-7 h-7 text-primary group-hover:text-secondary transition-colors"
+            >
+              <path
+                d="M12 2L3 7v6c0 5.25 3.75 10.17 9 11.38C17.25 23.17 21 18.25 21 13V7l-9-5z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9 12l2 2 4-4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="font-mono text-sm text-foreground/90 hidden sm:block">
+              emesh<span className="text-primary">.dev</span>
             </span>
           </a>
 
@@ -67,9 +72,9 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   activeSection === link.href.slice(1)
-                    ? "text-primary bg-primary/10"
+                    ? "text-primary bg-primary-dim"
                     : "text-muted hover:text-foreground hover:bg-white/5"
                 }`}
               >
@@ -78,7 +83,11 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            <div className="hidden sm:flex items-center gap-2 mr-2 px-3 py-1 rounded-full border border-secondary/20 bg-secondary/5">
+              <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse-dot" />
+              <span className="text-secondary text-xs font-medium">Available</span>
+            </div>
             <a
               href="https://github.com/EmeshTheRipper"
               target="_blank"
@@ -97,19 +106,13 @@ export default function Navbar() {
             >
               <FiLinkedin className="w-4 h-4" />
             </a>
-            {mounted && (
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-white/5 transition-colors"
-                aria-label="Toggle theme"
-              >
-                {theme === "dark" ? (
-                  <FiSun className="w-4 h-4" />
-                ) : (
-                  <FiMoon className="w-4 h-4" />
-                )}
-              </button>
-            )}
+            <a
+              href="mailto:emesh.lamichhane123@gmail.com"
+              className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-white/5 transition-colors hidden sm:flex"
+              aria-label="Email"
+            >
+              <FiMail className="w-4 h-4" />
+            </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 rounded-lg text-muted hover:text-foreground hover:bg-white/5 transition-colors"
@@ -122,16 +125,16 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden glass border-t border-border">
+        <div className="md:hidden glass-strong border-t border-border">
           <div className="px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                   activeSection === link.href.slice(1)
-                    ? "text-primary bg-primary/10"
+                    ? "text-primary bg-primary-dim"
                     : "text-muted hover:text-foreground hover:bg-white/5"
                 }`}
               >
