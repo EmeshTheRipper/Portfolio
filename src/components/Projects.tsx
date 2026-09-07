@@ -1,0 +1,14 @@
+export default function Projects() {
+  return (
+    <section id="projects" className="py-24 px-4">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-2xl font-bold mb-8">
+          <span className="text-primary font-mono text-sm">03.</span> Projects
+        </h2>
+        <div className="glass rounded-2xl p-8">
+          <p className="text-muted leading-relaxed">Projects content coming soon...</p>
+        </div>
+      </div>
+    </section>
+  );
+}
