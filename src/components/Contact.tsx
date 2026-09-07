@@ -97,7 +97,7 @@ export default function Contact() {
                   <FiArrowUpRight className="w-3 h-3 opacity-50" />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/emesh-lamichhane/"
+                  href="https://www.linkedin.com/in/emesh-lamichhane-127a74384/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border text-xs text-muted hover:text-foreground hover:border-[#0077b5]/30 hover:bg-surface transition-all"

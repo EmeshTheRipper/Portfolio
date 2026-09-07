@@ -52,7 +52,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative px-4 overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative px-4 pt-28 sm:pt-32 pb-16 overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/[0.04] rounded-full blur-[120px]" />
@@ -168,7 +168,7 @@ export default function Hero() {
             <FiGithub className="w-4 h-4" />
           </a>
           <a
-            href="https://www.linkedin.com/in/emesh-lamichhane/"
+            href="https://www.linkedin.com/in/emesh-lamichhane-127a74384/"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-lg border border-border text-muted hover:text-foreground hover:border-[#0077b5]/30 hover:bg-surface transition-all"

@@ -26,7 +26,7 @@ export default function Footer() {
               <FiGithub className="w-4 h-4" />
             </a>
             <a
-              href="https://www.linkedin.com/in/emesh-lamichhane/"
+              href="https://www.linkedin.com/in/emesh-lamichhane-127a74384/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2.5 rounded-lg border border-border text-muted hover:text-foreground hover:border-[#0077b5]/30 hover:bg-surface transition-all"

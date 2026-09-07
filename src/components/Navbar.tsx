@@ -89,7 +89,7 @@ export default function Navbar() {
               <FiGithub className="w-4 h-4" />
             </a>
             <a
-              href="https://www.linkedin.com/in/emesh-lamichhane/"
+              href="https://www.linkedin.com/in/emesh-lamichhane-127a74384/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-white/5 transition-colors"
